@@ -6,7 +6,7 @@ console.log(`Username: ${userName}`);
 
 // 🔍 Part 2 error
 
-//get the current date and time as a string
+//get the current date and time
 const currentDateTime = Date();
 console.log(currentDateTime);
 
