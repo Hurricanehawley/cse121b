@@ -2,14 +2,14 @@
 
 /* Declare and initialize global variables */
 const url = "https://byui-cse.github.io/cse121b-ww-course/resources/temples.json"
-const templesElement = dcoument.querySelector("#temples");
+const templesElement = document.querySelector("#temples");
 const templesList = [];
 let data = null;
 
 
 /* async displayTemples Function */
-async function displayTemples() {
-    const displayTemples = (temples) => {
+function displayTemples(temples) {
+    
         temples.forEach((temple) => {
             const articleElement = document.createElement("article");
             
@@ -23,13 +23,12 @@ async function displayTemples() {
             articleElement.appendChild(h3Element);
             articleElement.appendChild(imgElement);
 
-            templesElement.appendChild(article);
+            templesElement.appendChild(articleElement);
             console.log(temple);
         });
     };
-    displayTemples(templesList);
-    const templesList = document.getElementById("temples");
-}
+    
+
 
 
 /* async getTemples Function using fetch()*/
@@ -38,15 +37,22 @@ async function getTemples() {
     const response = await fetch("https://byui-cse.github.io/cse121b-ww-course/resources/temples.json");
     if (response.ok) {
         const data = await response.json();
-        templesList(data);
+        displayTemples(data);
     }
 }
 
 
 /* reset Function */
 function reset() {
-    
-}
+    var templesElement = document.getElementById("templesElement");
+    if (templesElement) {
+        while (templesElement.firstChild) {
+            templesElement.removeChild(templesElement.firstChild);
+        }
+    } else {
+        console.error("Element with ID 'templesElement' not found.");
+    }  
+};
 
 /* filterTemples Function */
 function filterTemples(temples) {
@@ -54,7 +60,13 @@ function filterTemples(temples) {
     let filter = document.getElementById('filtered').value;
     switch (filter) {
         case 'utah':
-            displayTemples(temples)
+            let utahTemples = temples.filter(temple => temple.location.toLowerCase().includes('utah'));
+            displayTemples(utahTemples);
+            break;
+        case 'notutah':
+            let notutahTemples = temples.filter(temple => temple.location.toLowerCase().unincludes('utah'));
+            displayTemples(notutahTemples);
+            break;
     }
 }
 
