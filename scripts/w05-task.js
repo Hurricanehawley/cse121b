@@ -64,7 +64,7 @@ function filterTemples(temples) {
             displayTemples(utahTemples);
             break;
         case 'notutah':
-            let notutahTemples = temples.filter(temple => temple.location.toLowerCase().unincludes('utah'));
+            let notutahTemples = temples.filter(temple => temple.location.toLowerCase()!=('utah'));
             displayTemples(notutahTemples);
             break;
     }
@@ -73,3 +73,4 @@ function filterTemples(temples) {
 getTemples();
 
 /* Event Listener */
+document.querySelector("#filtered").addEventListener("change", () => { filterTemples(templeList) });

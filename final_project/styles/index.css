@@ -1,0 +1,15 @@
+body{
+    display: grid;
+    background-color: #cc998d;
+}
+
+
+#quote-container{
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+#dad-joke-container{
+    grid-column-start: 8;
+    grid-column-end: 9;
+}
